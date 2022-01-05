@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sling Shoot 2.0</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        user-select: none;
+      }
+
+      top-var-while-play{
+      	font-weight: 800!important;
+      	font-family: Times;
+      }
+
+      canvas {
+        padding: 0;
+        margin: 0;
+      }
+
+      .top-var {
+        position: relative;
+        top: 0;
+        left: 0;
+        height: 14.5vh;
+        color: grey;
+        background-color: #c0f2ff;
+        width: 100%;
+        padding: 10px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+      }
+
+      .top-var p {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 40px;
+      }
+
+      .game-menu {
+        position: relative;
+        height: 74vh;
+        color: white;
+        background-color: rgb(0, 176, 240);
+        width: 100%;
+        text-align: center;
+        font-size: 17px;
+        padding: 10px 0;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .game-menu div img {
+        height: 200px;
+      }
+
+      .game-menu .options div {
+        height: 50px;
+        width: 200px;
+        color: rgb(220, 255, 238);
+        background-color: rgb(0, 176, 240);
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        box-shadow: -5px 0px 10px rgb(124, 235, 255);
+        border: 1px solid rgb(124, 235, 255);
+        border-radius: 5px;
+        font-weight: lighter;
+      }
+
+      .game-menu .options div:hover {
+        background: rgb(11, 123, 250);
+        cursor: pointer;
+      }
+
+      .game-menu div p {
+        font-size: 24px;
+      }
+
+      footer {
+        position: relative;
+        height: 11.5vh;
+        color: white;
+        background-color: rgb(255, 150, 111);
+        width: 100%;
+        text-align: center;
+        font-size: 17px;
+        padding: 10px 0;
+      }
+
+      footer span {
+        color: rgb(35, 36, 36);
+      }
+
+      footer span a {
+        text-decoration: underline;
+      }
+      footer span a:link {
+        color: red;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      .hideModalClass {
+        visibility: hidden;
+      }
+
+      .top-var {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .while-play-only {
+        display: flex;
+        font-size: x-small;
+      }
+
+      .while-play-only button {
+        margin: 5px;
+        color: grey;
+        border: 2px solid white;
+        border-radius: 10px;
+        padding: 5px;
+        box-shadow: 0 0 10px rgb(0, 224, 253);
+        background-color: rgb(255, 255, 255);
+        text-transform: uppercase;
+      }
+
+      .while-play-only button:hover {
+        background-color: black;
+        color: white;
+      }
+
+      .top-var-while-play {
+        font-size: 25px !important;
+        margin-left: 10px;
+      }
+
+      .about-modal {
+        position: fixed;
+        top: 5%;
+        left: 15%;
+        height: 92vh;
+        width: 70%;
+        box-shadow: 0px 0px 10px rgb(128, 125, 125);
+        background-color: white;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .about-modal h2 {
+        font-size: 20px;
+        padding: 5px 10px;
+        padding-top: 10px
+        border-bottom: 2px solid grey;
+      }
+
+      .about-modal h4 {
+        font-size: 13px;
+        text-align: justify;
+        padding: 5px 15px;
+      }
+      .about-modal h5 {
+        font-size: 11px;
+        text-align: justify;
+        padding: 0 10px;
+      }
+
+      .modal-body {
+        padding: 5px 20px;
+      }
+
+      .modal-body button {
+        margin-left: 40%;
+        margin-top: 10px;
+        width: 100px;
+        height: 25px;
+        background-color: lightgray;
+        color: black;
+        border: 0;
+      }
+      .version{
+      	font-size: 20px;
+      	padding: 5px 10px;
+      	background: rgb(0, 176, 240);
+      	margin-left: 5px;
+      	color: white;
+      	border-radius: 10px;
+      }
+
+      .top-var-while-play .name {
+      	color: rgb(0, 176, 240);
+      	text-shadow: 2px 1px 1px lightgray;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="about-modal hideModalClass">
+      <div class="modal-body">
+        <h2>Sling Shoot 2.0</h2>
+        <h4>
+          <u> Intro </u>
+        </h4>
+        <h5>
+          A classic shooting game based on retro shooting games. Purely written
+          in javascript with Matter js physics engine . We have done a very
+          little customization to its very own features.
+        </h5>
+        <h4>
+          <u> How to play?</u>
+        </h4>
+        <h5>
+          just pull or drag the ball a little bit and shoot . And Boom!!! all
+          the ball are flying. Make sure you haven't shoot it straight. Try to
+          make it clear scene as soon as possible so that we can show you as the
+          best on the Leader Board If stuck watch add for more extra balls.
+          <br />
+          <br />
+          Otherwise, to donate and support,
+          <br />contact : shihabe38900@gmail.com
+        </h5>
+        <br />
+        <h5>Copyright @2021 shihabe uddin</h5>
+        <button id="hideModal">Ok</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="top-var">
+        <p class="top-var-while-play">
+        	<span class="name"><b>Sling Shoot Fun<b></span>
+        	<span class="version">2.0<span>
+        </p>
+        <div class="while-play-only">
+          <button id="setting">Setting</button>
+          <button id="home">Home</button>
+          <button id="about">About</button>
+        </div>
+      </div>
+      <div id="menuScreen" class="game-menu">
+        <div>
+          <img src="./Banner.png" alt="" />
+        </div>
+        <div class="options">
+          <div id="playBtn"><p>Play</p></div>
+          <div id="theme"><p>Modern</p></div>
+          <div><p>Leader Board</p></div>
+        </div>
+      </div>
+      <div class="currentGamePlayScreen hide"></div>
+      <footer>
+        Developed by
+        <span
+          ><a href="https://www.shihab-portfolio.web.app"
+            >Shihabe Uddin</a
+          ></span
+        >
+      </footer>
+    </div>
+
+    <script src="./matter.js"></script>
+    <script>
+      var ms = document.querySelector("#menuScreen");
+      var cgs = document.querySelector(".currentGamePlayScreen");
+      var playBtn = document.querySelector("#playBtn");
+      var homeBtn = document.querySelector("#home");
+      var themeBtn = document.querySelector("#theme");
+      var hideModal = document.querySelector("#hideModal");
+      var aboutModal = document.querySelector(".about-modal");
+      var aboutBtn = document.querySelector("#about");
+      
+      var isHome = true;
+
+      var theme = false;
+
+      function game() {
+        console.log(`${theme} : theme`);
+        let otherSpace = 26; // 16vh + 10vh : footer + topvar
+
+        let screenWidth = screen.availWidth;
+        let screenHeight = Math.round(
+          (screen.availHeight / 100) * (100 - otherSpace)
+        );
+
+        // let screenHeight = 568;
+
+        function fitWidth(valueToConvert) {
+          let OurStanderdValue = 720;
+          let csw = screenWidth;
+          let vtc = valueToConvert;
+          getStanderdPercentage = (vtc / OurStanderdValue) * 100;
+          console.log(`${getStanderdPercentage} for ${vtc}`);
+          return Math.round((csw * getStanderdPercentage) / 100);
+        }
+
+        function fitHeight(valueToConvert) {
+          let OurStanderdValue = 360;
+          let csh = screenHeight;
+          let vtc = valueToConvert;
+          getStanderdPercentage = (vtc / OurStanderdValue) * 100;
+          console.log(`${getStanderdPercentage} for ${vtc}`);
+          return Math.round((csh * getStanderdPercentage) / 100);
+        }
+
+        let groundWidth = fitWidth(240);
+        let groundHeight = 5;
+        let groundX = fitWidth(510);
+        let groundY = fitHeight(250);
+
+        let NumberOfBalls_XPosition = 5;
+        let NumberOfBalls_YPosition = 5;
+
+        let OctaBallsRadius = 16;
+
+        let OctaBallsX = fitWidth(440);
+        let OctaBallsY = fitHeight(50);
+        let OctaBallsSides = 8;
+
+        let shootingBallX = fitWidth(100);
+        let shootingBallY = fitHeight(270);
+        let shootingBallRadius = 13;
+
+        console.log(
+          groundWidth,
+          groundX,
+          groundY,
+          OctaBallsX,
+          OctaBallsY,
+          shootingBallX,
+          shootingBallY
+        );
+
+        let themeCase = {
+          colorful: false,
+          classic: true,
+        };
+
+        let engine = Matter.Engine.create();
+
+        let render = Matter.Render.create({
+          element: document.querySelector(".currentGamePlayScreen"),
+          engine: engine,
+          options: {
+            width: screenWidth,
+            height: screenHeight,
+            wireframes: theme,
+          },
+        });
+
+        let ground = Matter.Bodies.rectangle(
+          groundX,
+          groundY,
+          groundWidth,
+          groundHeight,
+          {
+            isStatic: true,
+          }
+        );
+
+        let mouse = Matter.Mouse.create(render.canvas);
+        let mouseCoonstraint = Matter.MouseConstraint.create(engine, {
+          mouse: mouse,
+          constraint: {
+            render: { visible: false },
+          },
+        });
+
+        render.mouse = mouse;
+
+        let OctaBalls = Matter.Composites.stack(
+          OctaBallsX,
+          OctaBallsY,
+          NumberOfBalls_XPosition,
+          NumberOfBalls_YPosition,
+          0,
+          0,
+          (x, y) => Matter.Bodies.polygon(x, y, OctaBallsSides, OctaBallsRadius)
+        );
+
+        let shootingBall = Matter.Bodies.circle(
+          shootingBallX,
+          shootingBallY,
+          shootingBallRadius
+        );
+        let sling = Matter.Constraint.create({
+          pointA: { x: shootingBallX, y: shootingBallY },
+          bodyB: shootingBall,
+          stiffness: 0.05,
+        });
+
+        let fireing = false;
+
+        Matter.Events.on(mouseCoonstraint, "enddrag", function (e) {
+          if (e.body === shootingBall) fireing = true;
+          console.log("Fire is on ...");
+        });
+
+        Matter.Events.on(engine, "afterUpdate", function () {
+          if (
+            fireing &&
+            Math.abs(shootingBall.position.x - shootingBallX) <
+              shootingBallRadius &&
+            Math.abs(shootingBall.position.y - shootingBallY) <
+              shootingBallRadius
+          ) {
+            shootingBall = Matter.Bodies.circle(
+              shootingBallX,
+              shootingBallY,
+              shootingBallRadius
+            );
+            Matter.World.add(engine.world, shootingBall);
+            sling.bodyB = shootingBall;
+            fireing = false;
+            console.log("Fired");
+          }
+        });
+
+        Matter.World.add(engine.world, [
+          OctaBalls,
+          ground,
+          shootingBall,
+          sling,
+          mouseCoonstraint,
+        ]);
+
+        Matter.Engine.run(engine);
+        Matter.Render.run(render);
+      }
+
+      function gameScreen() {
+          ms.classList.toggle("hide");
+          cgs.classList.toggle("hide");
+          isHome = false;
+      }
+
+      function homeScreen() {
+        if (!isHome){
+          cgs.classList.toggle("hide");
+          ms.classList.toggle("hide");
+        }
+      }
+
+      function reset() {
+        cgs.innerHTML = "";
+      }
+
+      function Play() {
+        reset();
+        game();
+        gameScreen();
+      }
+
+      function MainLoop() {
+        playBtn.addEventListener("click", () => {
+          Play();
+        });
+        homeBtn.addEventListener("click", () => {
+          homeScreen();
+          isHome = true
+        });
+        themeBtn.addEventListener("click", () => {
+          if (theme) {
+            themeBtn.innerHTML = "<p>Modern</p>";
+            theme = false;
+          } else {
+            themeBtn.innerHTML = "<p>Classic</p>";
+            theme = true;
+          }
+        });
+        hideModal.addEventListener("click", () => {
+          aboutModal.classList.toggle("hideModalClass");
+        });
+        about.addEventListener("click", () => {
+          aboutModal.classList.toggle("hideModalClass");
+        });
+      }
+
+      MainLoop();
+    </script>
+  </body>
+</html>
